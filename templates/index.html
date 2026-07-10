@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Travel Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar">
+        <div class="sidebar__brand">
+            <i class="ti ti-plane-tilt"></i>
+            <span>AI Travel Agent</span>
+        </div>
+
+        <button class="new-trip-btn" id="newTripBtn" type="button">
+            <i class="ti ti-plus"></i> New Trip
+        </button>
+
+        <nav class="sidebar__section">
+            <p class="sidebar__label">Chat History</p>
+            <div id="historyList" class="history-list">
+                <p class="history-empty">No previous chats yet.</p>
+            </div>
+        </nav>
+
+        <div class="sidebar__footer">
+            <i class="ti ti-map-2"></i>
+            <span>Plan smarter. Travel further.</span>
+        </div>
+    </aside>
+
+    <!-- ============ MAIN ============ -->
+    <main class="main">
+
+        <header class="topbar">
+            <div class="topbar__title">
+                <h1>Where to next?</h1>
+                <p>Flights &middot; Hotels &middot; Weather &middot; Budget &middot; Attractions</p>
+            </div>
+            <div class="topbar__badge">
+                <i class="ti ti-sparkles"></i> AI&middot;01
+            </div>
+        </header>
+
+        <nav class="chips" aria-label="Quick questions">
+            <button class="chip" type="button" data-prompt="Find flights from Mumbai to Goa this weekend.">
+                <i class="ti ti-plane" aria-hidden="true"></i><span>Flights</span>
+            </button>
+            <button class="chip" type="button" data-prompt="Suggest good hotels in Goa under 5000 per night.">
+                <i class="ti ti-building" aria-hidden="true"></i><span>Hotels</span>
+            </button>
+            <button class="chip" type="button" data-prompt="What's the weather like in Goa this week?">
+                <i class="ti ti-sun" aria-hidden="true"></i><span>Weather</span>
+            </button>
+            <button class="chip" type="button" data-prompt="Estimate a budget for a 5-day Goa trip for 2 people.">
+                <i class="ti ti-currency-rupee" aria-hidden="true"></i><span>Budget</span>
+            </button>
+            <button class="chip" type="button" data-prompt="What are the must-see attractions in Goa?">
+                <i class="ti ti-map-pin" aria-hidden="true"></i><span>Spots</span>
+            </button>
+        </nav>
+
+        <section class="chat-box" id="chatBox" aria-live="polite">
+            <div class="msg msg--bot">
+                <p>Hello, traveler. I'm your AI Travel Agent.</p>
+                <p>Ask me about flights, hotels, weather, budgets, or things to do &mdash; or tap a category above to get started.</p>
+            </div>
+        </section>
+
+        <form class="composer" id="chatForm">
+            <input type="text" id="message" placeholder="Ask anything about your trip..." autocomplete="off">
+            <button type="submit" class="send" id="sendBtn"><i class="ti ti-send-2"></i></button>
+        </form>
+
+    </main>
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
