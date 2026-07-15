@@ -2,18 +2,22 @@ from dotenv import load_dotenv
 load_dotenv()
 import os
 import requests
+import os
 import pymysql
 
 def get_connection():
+    print("MYSQL_HOST =", os.getenv("MYSQL_HOST"))
+    print("MYSQL_PORT =", os.getenv("MYSQL_PORT"))
+    print("MYSQL_DATABASE =", os.getenv("MYSQL_DATABASE"))
+
     return pymysql.connect(
-        host=os.getenv("MYSQLHOST"),
-        port=int(os.getenv("MYSQLPORT")),
-        user=os.getenv("MYSQLUSER"),
-        password=os.getenv("MYSQLPASSWORD"),
-        database=os.getenv("MYSQLDATABASE"),
+        host=os.getenv("MYSQL_HOST"),
+        port=int(os.getenv("MYSQL_PORT", 3306)),
+        user=os.getenv("MYSQL_USER"),
+        password=os.getenv("MYSQL_PASSWORD"),
+        database=os.getenv("MYSQL_DATABASE"),
         cursorclass=pymysql.cursors.DictCursor
     )
-
 def save_chat_history(user_message: str, ai_response: str):
     conn = get_connection()
     cursor = conn.cursor()
